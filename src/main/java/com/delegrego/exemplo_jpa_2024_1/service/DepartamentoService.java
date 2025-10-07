@@ -1,11 +1,13 @@
 package com.delegrego.exemplo_jpa_2024_1.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.delegrego.exemplo_jpa_2024_1.dto.DepartamentoDto;
 import com.delegrego.exemplo_jpa_2024_1.entity.DepartamentoEntity;
 import com.delegrego.exemplo_jpa_2024_1.repo.DepartamentoRepository;
 
+@Service
 public class DepartamentoService {
 
 	@Autowired
