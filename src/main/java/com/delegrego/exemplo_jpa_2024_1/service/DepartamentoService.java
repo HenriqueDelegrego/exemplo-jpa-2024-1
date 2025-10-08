@@ -50,6 +50,20 @@ public class DepartamentoService {
 
 	// Update
 
+	public void atualizarDepartamento(DepartamentoDto departamentoDto) {
+
+		DepartamentoEntity departamentoEntity = new DepartamentoEntity();
+		departamentoEntity.setIdDepartamento(departamentoDto.getIdDepartamento());
+		departamentoEntity.setNmDepartamento(departamentoDto.getNmDepartamento());
+
+		departamentoRepository.save(departamentoEntity);
+
+	}
+
 	// Delete
+
+	public void deletarDepartamento(int id) {
+		departamentoRepository.deleteById(id);
+	}
 
 }

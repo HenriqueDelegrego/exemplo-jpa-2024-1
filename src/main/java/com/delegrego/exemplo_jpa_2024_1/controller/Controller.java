@@ -18,7 +18,8 @@ public class Controller implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 	
-		System.out.println(departamentoService.listarDepartamentos());
+		departamentoService.deletarDepartamento(4);
+		
 		
 
 	}
