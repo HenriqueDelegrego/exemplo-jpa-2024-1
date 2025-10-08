@@ -1,5 +1,8 @@
 package com.delegrego.exemplo_jpa_2024_1.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,23 @@ public class DepartamentoService {
 	}
 
 	// Read
+	public List<DepartamentoDto> listarDepartamentos() {
+
+		List<DepartamentoEntity> listaDepartamentoEntity = departamentoRepository.findAll();
+
+		List<DepartamentoDto> listaDepartamentoDto = new ArrayList<DepartamentoDto>();
+
+		for (DepartamentoEntity d : listaDepartamentoEntity) {
+			DepartamentoDto departamentoDto = new DepartamentoDto();
+			departamentoDto.setIdDepartamento(d.getIdDepartamento());
+			departamentoDto.setNmDepartamento(d.getNmDepartamento());
+
+			listaDepartamentoDto.add(departamentoDto);
+		}
+
+		return listaDepartamentoDto;
+
+	}
 
 	// Update
 

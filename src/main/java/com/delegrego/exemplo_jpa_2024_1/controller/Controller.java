@@ -17,10 +17,9 @@ public class Controller implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		DepartamentoDto departamento = new DepartamentoDto();
-		departamento.setNmDepartamento("Desenvolvimento");
+	
+		System.out.println(departamentoService.listarDepartamentos());
 		
-		departamentoService.cadastrarDepartamento(departamento);
 
 	}
 

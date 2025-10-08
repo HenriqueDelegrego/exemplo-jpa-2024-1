@@ -32,4 +32,12 @@ public class DepartamentoDto {
 		this.nmDepartamento = nmDepartamento;
 	}
 
+	@Override
+	public String toString() {
+		return "DepartamentoDto [idDepartamento=" + idDepartamento + ", nmDepartamento=" + nmDepartamento + "]";
+	}
+	
+	
+	
+
 }
