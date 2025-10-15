@@ -14,17 +14,15 @@ public class Controller implements CommandLineRunner {
 
 	@Autowired
 	private DepartamentoService departamentoService;
-	
+
 	@Autowired
 	private FuncionarioService funcionarioService;
-	
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		
-	
-	System.out.println(funcionarioService.listarFuncionarios());
+
+		funcionarioService.deletarFuncionario(2);
 
 	}
 

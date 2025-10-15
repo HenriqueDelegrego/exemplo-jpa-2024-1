@@ -62,7 +62,27 @@ public class FuncionarioService {
 	}
 
 	// Update
+	public void atualizarFuncionario(FuncionarioDto funcionarioDto) {
+
+		Optional<DepartamentoEntity> departamentoEntity = departamentoRepository
+				.findById(funcionarioDto.getIdDepartamento());
+
+		FuncionarioEntity funcionarioEntity = new FuncionarioEntity();
+		funcionarioEntity.setIdFuncionario(funcionarioDto.getIdFuncionario());
+		funcionarioEntity.setNome(funcionarioDto.getNome());
+		funcionarioEntity.setEmail(funcionarioDto.getEmail());
+		funcionarioEntity.setSenha(funcionarioDto.getSenha());
+		funcionarioEntity.setSalario(funcionarioDto.getSalario());
+		funcionarioEntity.setDepartamento(departamentoEntity.get());
+
+		funcionarioRepository.save(funcionarioEntity);
+
+	}
 
 	// Delete
+
+	public void deletarFuncionario(int id) {
+		funcionarioRepository.deleteById(id);
+	}
 
 }
