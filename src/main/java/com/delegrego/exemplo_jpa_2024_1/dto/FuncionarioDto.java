@@ -76,4 +76,12 @@ public class FuncionarioDto {
 		this.idDepartamento = idDepartamento;
 	}
 
+	@Override
+	public String toString() {
+		return "FuncionarioDto [idFuncionario=" + idFuncionario + ", nome=" + nome + ", email=" + email + ", senha="
+				+ senha + ", salario=" + salario + ", idDepartamento=" + idDepartamento + "]";
+	}
+	
+	
+
 }
