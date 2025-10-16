@@ -22,7 +22,11 @@ public class Controller implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		funcionarioService.deletarFuncionario(2);
+		DepartamentoDto departamento = new DepartamentoDto();
+		
+		departamento.setNmDepartamento("               ");
+		
+		departamentoService.cadastrarDepartamento(departamento);
 
 	}
 
