@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import com.delegrego.exemplo_jpa_2024_1.dto.FuncionarioDto;
 import com.delegrego.exemplo_jpa_2024_1.entity.DepartamentoEntity;
@@ -13,7 +14,10 @@ import com.delegrego.exemplo_jpa_2024_1.entity.FuncionarioEntity;
 import com.delegrego.exemplo_jpa_2024_1.repo.DepartamentoRepository;
 import com.delegrego.exemplo_jpa_2024_1.repo.FuncionarioRepository;
 
+import jakarta.validation.Valid;
+
 @Service
+@Validated
 public class FuncionarioService {
 
 	@Autowired
@@ -23,7 +27,7 @@ public class FuncionarioService {
 	private DepartamentoRepository departamentoRepository;
 
 	// Create
-	public void cadastrarFuncionario(FuncionarioDto funcionarioDto) {
+	public void cadastrarFuncionario(@Valid FuncionarioDto funcionarioDto) {
 
 		Optional<DepartamentoEntity> departamentoEntity = departamentoRepository
 				.findById(funcionarioDto.getIdDepartamento());
@@ -62,7 +66,7 @@ public class FuncionarioService {
 	}
 
 	// Update
-	public void atualizarFuncionario(FuncionarioDto funcionarioDto) {
+	public void atualizarFuncionario(@Valid FuncionarioDto funcionarioDto) {
 
 		Optional<DepartamentoEntity> departamentoEntity = departamentoRepository
 				.findById(funcionarioDto.getIdDepartamento());

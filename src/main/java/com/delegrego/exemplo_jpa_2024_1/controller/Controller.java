@@ -1,5 +1,7 @@
 package com.delegrego.exemplo_jpa_2024_1.controller;
 
+import java.net.FileNameMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -22,11 +24,15 @@ public class Controller implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		DepartamentoDto departamento = new DepartamentoDto();
-		
-		departamento.setNmDepartamento("               ");
-		
-		departamentoService.cadastrarDepartamento(departamento);
+		FuncionarioDto funcionario = new FuncionarioDto();
+
+		funcionario.setNome("João");
+		funcionario.setEmail("joao@email.com");
+		funcionario.setSenha("senha");
+		funcionario.setSalario(2000);
+		funcionario.setIdDepartamento(1);
+
+		funcionarioService.cadastrarFuncionario(funcionario);
 
 	}
 
