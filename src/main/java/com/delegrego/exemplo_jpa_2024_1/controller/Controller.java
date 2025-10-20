@@ -24,15 +24,12 @@ public class Controller implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		FuncionarioDto funcionario = new FuncionarioDto();
-
-		funcionario.setNome("João");
-		funcionario.setEmail("joao@email.com");
-		funcionario.setSenha("senha");
-		funcionario.setSalario(2000);
-		funcionario.setIdDepartamento(1);
-
-		funcionarioService.cadastrarFuncionario(funcionario);
+		DepartamentoDto departamento = new DepartamentoDto();
+		
+		departamento.setIdDepartamento(10);
+		departamento.setNmDepartamento("Recursos Humanos");
+		
+		departamentoService.atualizarDepartamento(departamento);
 
 	}
 

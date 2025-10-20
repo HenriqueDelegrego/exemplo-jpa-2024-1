@@ -26,7 +26,7 @@ public class DepartamentoService {
 	public void cadastrarDepartamento(@Valid DepartamentoDto departamentoDto) {
 
 		DepartamentoEntity departamentoEntity = new DepartamentoEntity();
-		departamentoEntity.setIdDepartamento(departamentoDto.getIdDepartamento());
+
 		departamentoEntity.setNmDepartamento(departamentoDto.getNmDepartamento());
 
 		departamentoRepository.save(departamentoEntity);
@@ -56,8 +56,9 @@ public class DepartamentoService {
 
 	public void atualizarDepartamento(@Valid DepartamentoDto departamentoDto) {
 
-		DepartamentoEntity departamentoEntity = new DepartamentoEntity();
-		departamentoEntity.setIdDepartamento(departamentoDto.getIdDepartamento());
+		DepartamentoEntity departamentoEntity = departamentoRepository.findById(departamentoDto.getIdDepartamento())
+				.orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
+
 		departamentoEntity.setNmDepartamento(departamentoDto.getNmDepartamento());
 
 		departamentoRepository.save(departamentoEntity);
@@ -67,6 +68,9 @@ public class DepartamentoService {
 	// Delete
 
 	public void deletarDepartamento(int id) {
+
+		departamentoRepository.findById(id).orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
+
 		departamentoRepository.deleteById(id);
 	}
 
