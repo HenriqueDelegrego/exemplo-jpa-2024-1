@@ -29,15 +29,19 @@ public class FuncionarioService {
 	// Create
 	public void cadastrarFuncionario(@Valid FuncionarioDto funcionarioDto) {
 
-		Optional<DepartamentoEntity> departamentoEntity = departamentoRepository
-				.findById(funcionarioDto.getIdDepartamento());
+		if (funcionarioRepository.findByEmail(funcionarioDto.getEmail()).isPresent()) {
+			throw new RuntimeException("Email já existente");
+		}
+
+		DepartamentoEntity departamentoEntity = departamentoRepository.findById(funcionarioDto.getIdDepartamento())
+				.orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
 
 		FuncionarioEntity funcionarioEntity = new FuncionarioEntity();
 		funcionarioEntity.setNome(funcionarioDto.getNome());
 		funcionarioEntity.setEmail(funcionarioDto.getEmail());
 		funcionarioEntity.setSenha(funcionarioDto.getSenha());
 		funcionarioEntity.setSalario(funcionarioDto.getSalario());
-		funcionarioEntity.setDepartamento(departamentoEntity.get());
+		funcionarioEntity.setDepartamento(departamentoEntity);
 
 		funcionarioRepository.save(funcionarioEntity);
 
@@ -68,16 +72,22 @@ public class FuncionarioService {
 	// Update
 	public void atualizarFuncionario(@Valid FuncionarioDto funcionarioDto) {
 
-		Optional<DepartamentoEntity> departamentoEntity = departamentoRepository
-				.findById(funcionarioDto.getIdDepartamento());
+		FuncionarioEntity funcionarioEntity = funcionarioRepository.findById(funcionarioDto.getIdFuncionario())
+				.orElseThrow(() -> new RuntimeException("Funcionário não encontrado"));
 
-		FuncionarioEntity funcionarioEntity = new FuncionarioEntity();
-		funcionarioEntity.setIdFuncionario(funcionarioDto.getIdFuncionario());
+		if (funcionarioRepository.existsByEmailAndIdFuncionarioNot(funcionarioDto.getEmail(),
+				funcionarioDto.getIdFuncionario())) {
+			throw new RuntimeException("Email já existente");
+		}
+
+		DepartamentoEntity departamentoEntity = departamentoRepository.findById(funcionarioDto.getIdDepartamento())
+				.orElseThrow(() -> new RuntimeException("Departamento não encontrado"));
+
 		funcionarioEntity.setNome(funcionarioDto.getNome());
 		funcionarioEntity.setEmail(funcionarioDto.getEmail());
 		funcionarioEntity.setSenha(funcionarioDto.getSenha());
 		funcionarioEntity.setSalario(funcionarioDto.getSalario());
-		funcionarioEntity.setDepartamento(departamentoEntity.get());
+		funcionarioEntity.setDepartamento(departamentoEntity);
 
 		funcionarioRepository.save(funcionarioEntity);
 
